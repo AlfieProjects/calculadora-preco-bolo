@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calculadora de Preço de Bolo de Pote Grátis | Precifica</title>
+<meta name="description" content="Descubra o preço certo do bolo de pote: ingredientes, pote, colher, etiqueta, seu tempo, gás e luz e taxa da maquininha. Calculadora grátis, sem cadastro.">
+<meta property="og:title" content="Calculadora de preço de bolo de pote — grátis">
+<meta property="og:description" content="Descubra o preço certo do bolo de pote: ingredientes, pote, colher, etiqueta, seu tempo, gás e luz e taxa da maquininha. Calculadora grátis, sem cadastro.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://alfieprojects.github.io/calculadora-preco-bolo/bolo-de-pote/">
+<link rel="canonical" href="https://alfieprojects.github.io/calculadora-preco-bolo/bolo-de-pote/">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:image" content="https://alfieprojects.github.io/calculadora-preco-bolo/capa.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --choc: #6d3b2e; --choc-2: #8a5242; --rose: #f7e6e0; --rose-2: #fbf3f0;
+    --cream: #fffaf6; --ink: #2d2220; --muted: #6b5b55; --line: #e8d8d1;
+    --ok: #1e6b30; --ok-bg: #dff3e3; --bad: #b3261e; --bad-bg: #fde3e1; --warn-bg: #fff3cd;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: Nunito, system-ui, sans-serif; color: var(--ink); background: var(--cream); line-height: 1.5; }
+  header { background: var(--choc); color: #fff; padding: 28px 16px 64px; }
+  header .wrap, main, footer .wrap { max-width: 860px; margin: 0 auto; }
+  .brand { font-weight: 800; letter-spacing: .5px; opacity: .85; font-size: 14px; }
+  h1 { font-size: clamp(26px, 5vw, 38px); line-height: 1.15; margin: 8px 0 8px; }
+  header p { margin: 0; opacity: .9; max-width: 640px; }
+  main { padding: 0 16px; margin-top: -44px; }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 20px; margin-bottom: 18px; box-shadow: 0 4px 18px rgba(109,59,46,.06); }
+  h2 { font-size: 20px; margin: 0 0 4px; color: var(--choc); }
+  .hint { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+  label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  input { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font: inherit; background: var(--rose-2); }
+  input:focus { outline: 2px solid var(--choc-2); border-color: transparent; background: #fff; }
+  .grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+  table { width: 100%; border-collapse: collapse; }
+  .ing-head, .ing-row { display: grid; grid-template-columns: 2.2fr 1fr 1fr 1fr 1fr 32px; gap: 8px; align-items: center; }
+  .ing-head { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+  .ing-row { margin-bottom: 8px; }
+  .ing-row .custo { font-weight: 700; text-align: right; font-size: 14px; }
+  .del { border: 0; background: none; color: var(--muted); font-size: 20px; cursor: pointer; }
+  .btn { display: inline-block; border: 0; border-radius: 999px; padding: 11px 18px; font: inherit; font-weight: 800; cursor: pointer; text-decoration: none; }
+  .btn-sec { background: var(--rose); color: var(--choc); }
+  .btn-pri { background: var(--choc); color: #fff; }
+  .btn-wa { background: #1f9d55; color: #fff; }
+  .result { background: var(--choc); color: #fff; border: 0; }
+  .result h2 { color: #fff; }
+  .big { font-size: clamp(34px, 8vw, 52px); font-weight: 800; line-height: 1; margin: 6px 0; }
+  .rows { display: grid; gap: 6px; margin: 16px 0; }
+  .rows div { display: flex; justify-content: space-between; border-bottom: 1px dashed rgba(255,255,255,.25); padding-bottom: 4px; }
+  .alert { border-radius: 12px; padding: 12px 14px; margin-top: 12px; font-weight: 600; color: var(--ink); }
+  .alert.bad { background: var(--bad-bg); color: var(--bad); }
+  .alert.ok { background: var(--ok-bg); color: var(--ok); }
+  .alert.warn { background: var(--warn-bg); }
+  .cta { background: var(--rose); border: 2px solid var(--choc-2); }
+  .cta ul { padding-left: 20px; margin: 8px 0 14px; }
+  details { border-top: 1px solid var(--line); padding: 10px 0; }
+  summary { font-weight: 800; cursor: pointer; color: var(--choc); }
+  .article h3 { color: var(--choc); margin-bottom: 4px; }
+  footer { color: var(--muted); font-size: 13px; padding: 24px 16px 40px; }
+  @media (max-width: 640px) {
+    .ing-head { display: none; }
+    .ing-row { grid-template-columns: 1fr 1fr; background: var(--rose-2); padding: 10px; border-radius: 12px; }
+    .ing-row .nome { grid-column: 1 / -1; }
+    .ing-row .custo { text-align: left; }
+    .ing-row input { background: #fff; }
+  }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Qual o preço de um bolo de pote?","acceptedAnswer":{"@type":"Answer","text":"Depende dos seus custos. No exemplo da calculadora, o custo real é R$ 9,44 por pote e o preço sugerido, com margem de 20% e maquininha de 3,5%, é R$ 12,34."}},{"@type":"Question","name":"O pote e a colher entram no custo?","acceptedAnswer":{"@type":"Answer","text":"Sim. Pote, tampa, colher e etiqueta podem passar de R$ 0,80 por unidade e precisam estar no preço."}}]}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand">PRECIFICA · CONFEITARIA</div>
+    <h1>Calculadora de preço de bolo de pote</h1>
+    <p>Massa, recheio, pote, tampa, colher e etiqueta: coloque tudo, diga quantos potes a receita rende e veja o preço certo por pote, já com seu tempo e suas contas.</p>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1. O que vai na receita</h2>
+    <p class="hint">Coloque o tamanho e o preço da embalagem que você compra e quanto usa na receita (mesma unidade: g, ml ou unidade). Inclua potes, caixas e etiquetas.</p>
+    <div class="ing-head"><span>Ingrediente</span><span>Embalagem (qtd)</span><span>Preço pago</span><span>Usa na receita</span><span>Custo</span><span></span></div>
+    <div id="ings"></div>
+    <button class="btn btn-sec" id="add" type="button">+ Adicionar ingrediente</button>
+  </section>
+
+  <section class="card">
+    <h2>2. Rendimento e tempo</h2>
+    <div class="grid">
+      <div><label for="rend">A receita rende quantos potes?</label><input id="rend" type="number" min="0.1" step="any" value="10"></div>
+      <div><label for="tempo">Tempo total (horas)</label><input id="tempo" type="number" min="0" step="0.25" value="2"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Seu negócio</h2>
+    <p class="hint">Preencha uma vez; fica salvo neste aparelho.</p>
+    <div class="grid">
+      <div><label for="salario">Salário que quer ganhar (R$/mês)</label><input id="salario" type="number" min="0" step="50" value="2500"></div>
+      <div><label for="horas">Horas trabalhadas por mês</label><input id="horas" type="number" min="1" step="1" value="160"></div>
+      <div><label for="fixos">Contas fixas do mês (R$)</label><input id="fixos" type="number" min="0" step="10" value="900"></div>
+      <div><label for="margem">Margem de lucro (%)</label><input id="margem" type="number" min="0" max="90" step="1" value="20"></div>
+      <div><label for="taxa">Taxa maquininha/app (%)</label><input id="taxa" type="number" min="0" max="60" step="0.1" value="3.5"></div>
+      <div><label for="atual">Seu preço hoje, por unidade (opcional)</label><input id="atual" type="number" min="0" step="0.5" placeholder="ex.: 10"></div>
+    </div>
+  </section>
+
+  <section class="card result" aria-live="polite">
+    <h2>Preço sugerido por unidade</h2>
+    <div class="big" id="preco">R$ 0,00</div>
+    <div class="rows">
+      <div><span>Ingredientes e embalagens</span><b id="r-ing">—</b></div>
+      <div><span>Seu tempo (mão de obra)</span><b id="r-mo">—</b></div>
+      <div><span>Contas fixas (gás, luz, aluguel…)</span><b id="r-fix">—</b></div>
+      <div><span>Custo por unidade</span><b id="r-custo">—</b></div>
+      <div><span>Lucro por unidade</span><b id="r-lucro">—</b></div>
+    </div>
+    <div id="alerta"></div>
+    <p style="margin:14px 0 0"><a class="btn btn-wa" id="share" href="#" target="_blank" rel="noopener">Compartilhar no WhatsApp</a></p>
+  </section>
+
+  <section class="card cta">
+    <h2>Tem mais de um produto? Use a planilha completa</h2>
+    <p>A calculadora resolve um produto por vez. A <b>Planilha Precifica Confeitaria</b> organiza o seu cardápio inteiro:</p>
+    <ul>
+      <li>Cadastro de ingredientes uma vez só — mudou o preço do leite condensado, todos os produtos se atualizam</li>
+      <li>Fichas técnicas de todas as receitas, com embalagens e desperdício</li>
+      <li>Alerta automático de <b>prejuízo</b> ou margem baixa em cada produto</li>
+      <li>Meta: quantas unidades vender por mês para pagar as contas e o seu salário</li>
+      <li>Funciona no Excel e no Google Planilhas (celular também)</li>
+    </ul>
+    <a class="btn btn-pri" id="cta" href="https://pay.kiwify.com.br/N4Rltfa" data-goatcounter-click="cta-planilha">Quero a planilha — R$ 27</a>
+    <p class="hint" style="margin-top:10px">Pagamento único, acesso imediato. Garantia de 7 dias.</p>
+  </section>
+
+  <section class="card article">
+    <h2>Quanto cobrar no bolo de pote</h2>
+    <p>No exemplo acima (10 potes de chocolate com recheio de brigadeiro), ingredientes e embalagens somam R$ 51,90, ou R$ 5,19 por pote. Só o pote, a colher e a etiqueta custam R$ 0,89 por unidade, quase 20% do custo dos ingredientes.</p>
+    <h3>Seu tempo e as contas</h3>
+    <p>Assar, rechear, montar e etiquetar 10 potes leva umas 2 horas. Com salário desejado de R$ 2.500 e 160 horas por mês, são R$ 3,13 de trabalho por pote. As contas fixas (gás, luz, internet, DAS) somam mais R$ 1,13. O custo real fica em <b>R$ 9,44 por pote</b>.</p>
+    <h3>Preço sugerido no exemplo</h3>
+    <p>Com margem de 20% e maquininha de 3,5%: R$ 9,44 ÷ 0,765 = <b>R$ 12,34 por pote</b>. Muita gente vende a R$ 10. Nesse caso, depois da taxa da maquininha, sobra R$ 9,65, que não cobre o custo de R$ 9,44 com folga nenhuma para lucro.</p>
+    <h3>Dica</h3>
+    <p>Teste potes de 200 ml e de 300 ml com preços diferentes. Muitas vezes o pote maior tem margem melhor, porque embalagem e tempo quase não mudam.</p>
+
+    <h2 style="margin-top:22px">Perguntas frequentes</h2>
+    <details><summary>Posso multiplicar o custo dos ingredientes por 3?</summary><p>É uma regra rápida, mas ignora o tempo de cada produto e as taxas. Um doce trabalhoso pode dar prejuízo e um simples pode ficar caro demais. Calcule cada produto.</p></details>
+    <details><summary>Qual margem de lucro usar?</summary><p>De 15% a 30% sobre o preço é comum, além do seu salário. Encomendas personalizadas e datas como Páscoa e Dia das Mães comportam mais.</p></details>
+    <details><summary>E se o preço sugerido ficar acima do que a cliente paga?</summary><p>Reveja o tempo gasto, compre ingredientes no atacado, ajuste o tamanho da porção ou foque nos produtos com melhor margem. Vender abaixo do custo não se paga com volume.</p></details>
+    <details><summary>Meus dados ficam salvos?</summary><p>Ficam só no seu aparelho (no navegador). Nada é enviado para nenhum servidor.</p></details>
+  </section>
+</main>
+
+<footer><nav class="wrap" style="margin-bottom:10px">Outras calculadoras grátis: <a href="https://alfieprojects.github.io/calculadora-preco-bolo/">bolos e doces</a> · <a href="https://alfieprojects.github.io/calculadora-preco-bolo/brigadeiro/">brigadeiro gourmet (cento)</a> · <a href="https://alfieprojects.github.io/calculadora-preco-bolo/bolo-de-pote/">bolo de pote</a> · <a href="https://alfieprojects.github.io/calculadora-preco-bolo/bolo-por-kg/">bolo por kg</a></nav><div class="wrap">Precifica — ferramentas simples para quem vende o que produz. Os resultados são estimativas; confira seus custos reais.</div></footer>
+
+<script>
+(() => {
+  const BRL = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+  const $ = (id) => document.getElementById(id);
+  const KEY = 'precifica-bolo-de-pote-v1';
+  const padrao = {
+    ings: [["Farinha de trigo",1000,6.5,240],["Açúcar",1000,5.5,300],["Chocolate em pó 50%",200,12,140],["Ovos",30,25,4],["Leite",1000,6,240],["Óleo",900,8,120],["Fermento",100,5,15],["Leite condensado",395,7.5,790],["Creme de leite",200,4,400],["Manteiga",200,12,30],["Pote 250 ml com tampa",50,30,10],["Colher descartável",50,7,10],["Etiqueta",100,15,10]],
+  };
+  const campos = ['rend', 'tempo', 'salario', 'horas', 'fixos', 'margem', 'taxa', 'atual'];
+  const num = (v) => { const n = parseFloat(String(v).replace(',', '.')); return isFinite(n) ? n : 0; };
+
+  function linha(d = ['', '', '', '']) {
+    const div = document.createElement('div');
+    div.className = 'ing-row';
+    div.innerHTML = `
+      <input class="nome" placeholder="Ingrediente" aria-label="Ingrediente">
+      <input type="number" min="0" step="any" placeholder="Embalagem" aria-label="Quantidade na embalagem">
+      <input type="number" min="0" step="any" placeholder="R$ pago" aria-label="Preço pago">
+      <input type="number" min="0" step="any" placeholder="Usa" aria-label="Quantidade usada">
+      <span class="custo">—</span>
+      <button class="del" type="button" aria-label="Remover">×</button>`;
+    const inputs = div.querySelectorAll('input');
+    d.forEach((v, i) => { inputs[i].value = v; });
+    div.querySelector('.del').onclick = () => { div.remove(); calc(); };
+    $('ings').appendChild(div);
+  }
+
+  function ler() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || null; } catch { return null; }
+  }
+  function salvar(estado) {
+    try { localStorage.setItem(KEY, JSON.stringify(estado)); } catch {}
+  }
+
+  function calc() {
+    let ing = 0;
+    const lista = [];
+    $('ings').querySelectorAll('.ing-row').forEach((row) => {
+      const [n, emb, preco, usa] = [...row.querySelectorAll('input')].map((i) => i.value);
+      const c = num(emb) > 0 ? (num(preco) / num(emb)) * num(usa) : 0;
+      row.querySelector('.custo').textContent = c ? BRL.format(c) : '—';
+      ing += c;
+      lista.push([n, emb, preco, usa]);
+    });
+    const v = Object.fromEntries(campos.map((k) => [k, $(k).value]));
+    salvar({ ings: lista, ...v });
+
+    const rend = Math.max(num(v.rend), 1);
+    const horas = Math.max(num(v.horas), 1);
+    const mo = num(v.tempo) * (num(v.salario) / horas);
+    const fix = num(v.tempo) * (num(v.fixos) / horas);
+    const custoUn = (ing + mo + fix) / rend;
+    const margem = num(v.margem) / 100, taxa = num(v.taxa) / 100;
+    const div = 1 - margem - taxa;
+    const preco = div > 0 ? custoUn / div : NaN;
+
+    $('preco').textContent = isFinite(preco) ? BRL.format(preco) : 'Reveja margem e taxas';
+    $('r-ing').textContent = BRL.format(ing / rend);
+    $('r-mo').textContent = BRL.format(mo / rend);
+    $('r-fix').textContent = BRL.format(fix / rend);
+    $('r-custo').textContent = BRL.format(custoUn);
+    $('r-lucro').textContent = isFinite(preco) ? BRL.format(preco * margem) : '—';
+
+    const atual = num(v.atual);
+    const al = $('alerta');
+    if (atual > 0) {
+      const lucro = atual * (1 - taxa) - custoUn;
+      if (lucro < 0) al.innerHTML = `<div class="alert bad">Atenção: cobrando ${BRL.format(atual)} você tem <b>prejuízo de ${BRL.format(-lucro)} por unidade</b> depois de pagar seu tempo e suas contas.</div>`;
+      else if (lucro < atual * margem * 0.5) al.innerHTML = `<div class="alert warn">Cobrando ${BRL.format(atual)} sobra só ${BRL.format(lucro)} de lucro por unidade. Margem baixa.</div>`;
+      else al.innerHTML = `<div class="alert ok">Cobrando ${BRL.format(atual)} você tem ${BRL.format(lucro)} de lucro por unidade, além do seu salário.</div>`;
+    } else al.innerHTML = '';
+
+    const msg = `Calculei o preço certo dos meus doces de graça aqui, incluindo gás, luz e meu tempo: ${location.href.split('#')[0]}`;
+    $('share').href = 'https://wa.me/?text=' + encodeURIComponent(msg);
+  }
+
+  const est = ler() || padrao;
+  (est.ings && est.ings.length ? est.ings : padrao.ings).forEach((d) => linha(d));
+  campos.forEach((k) => { if (est[k] !== undefined) $(k).value = est[k]; });
+  $('add').onclick = () => { linha(); calc(); };
+  document.addEventListener('input', calc);
+  calc();
+  const cta = $('cta');
+  if (cta.getAttribute('href') === '#COMPRA') { cta.textContent = 'Planilha completa: lançamento em breve'; cta.removeAttribute('href'); cta.style.opacity = '.6'; cta.style.cursor = 'default'; }
+})();
+</script>
+</body>
+</html>

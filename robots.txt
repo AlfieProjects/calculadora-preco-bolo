@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://alfieprojects.github.io/calculadora-preco-bolo/sitemap.xml
